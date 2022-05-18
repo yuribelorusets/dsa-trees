@@ -15,31 +15,57 @@ class Tree {
   /** sumValues(): add up all of the values in the tree. */
 
   sumValues() {
-    let sum = this.root.val;
-    
-    let toVisitStack = [this];
-    
+
+    let sum = 0;
+    let toVisitStack = [this.root];
+
     while (toVisitStack.length) {
       let current = toVisitStack.pop();
-      
-      current.children.map(child => sum += child.val)
+      sum += current.val;
 
       for (let child of current.children)
         toVisitStack.push(child)
     }
+    return sum;
   }
 
   /** countEvens(): count all of the nodes in the tree with even values. */
 
   countEvens() {
+    let evens = 0;
+    let toVisitStack = [this.root];
 
+    while (toVisitStack.length) {
+      let current = toVisitStack.pop();
+
+      if (current.val % 2 === 0) {
+        evens += 1;
+      }
+
+      for (let child of current.children)
+        toVisitStack.push(child)
+    }
+    return evens;
   }
 
   /** numGreater(lowerBound): return a count of the number of nodes
    * whose value is greater than lowerBound. */
 
   numGreater(lowerBound) {
+    let count = 0;
+    let toVisitStack = [this.root];
 
+    while (toVisitStack.length) {
+      let current = toVisitStack.pop();
+
+      if (current.val > lowerBound) {
+        count += 1;
+      }
+
+      for (let child of current.children)
+        toVisitStack.push(child)
+    }
+    return count;
   }
 }
 

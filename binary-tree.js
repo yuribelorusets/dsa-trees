@@ -17,7 +17,22 @@ class BinaryTree {
    * the length of the shortest path from the root to a leaf. */
 
   minDepth(node = this.root) {
+    let toVisitQueue = [node];
+    let count = 0;
 
+    if (!node) return count;
+
+    while (toVisitQueue.length) {
+      let current = toVisitQueue.shift();
+      count += 1;
+
+      if (!current.left && !current.right) {
+        return count;
+      }
+
+      toVisitQueue.push(current.left, current.right)
+    }
+    return count;
   }
 
   /** maxDepth(): return the maximum depth of the tree -- that is,
